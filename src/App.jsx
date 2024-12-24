@@ -12,6 +12,23 @@ RenderName.propTypes = {
 
 const App = () => {
   const [heading, setHeading] = useState("Magnificent Monkeys");
+  const [homeData, setHomeData] = useState();
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/')
+    .then((response) => {
+      if (response.status >= 400) {
+        throw new Error("server error");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data)
+      setHomeData(data);
+    })
+    .catch((error) => setError(error))
+  }, [])
 
   const clickHandler = () => {
     setHeading("Radical Rhinos");
@@ -23,6 +40,7 @@ const App = () => {
         Click Me
       </button>
       <h1>{heading}</h1>
+      <h2>{homeData.title}</h2>
     </>
   );
 };
