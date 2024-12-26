@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+import { Outlet } from "react-router-dom";
 import PropTypes from 'prop-types';
 import './App.css'
+import Navbar from "./components/Navbar/Navbar";
 
 const RenderName = (props) => {
   return <div>{props.name}</div>;
@@ -11,7 +13,6 @@ RenderName.propTypes = {
 };
 
 const App = () => {
-  const [heading, setHeading] = useState("Magnificent Monkeys");
   const [homeData, setHomeData] = useState();
   const [error, setError] = useState(null);
 
@@ -25,22 +26,22 @@ const App = () => {
     })
     .then((data) => {
       console.log(data)
-      setHomeData(data);
+      setHomeData(data.title);
     })
     .catch((error) => setError(error))
   }, [])
 
-  const clickHandler = () => {
-    setHeading("Radical Rhinos");
-  };
+
+  if (error) return <p>Network error innit</p>
 
   return (
     <>
-      <button type="button" onClick={clickHandler}>
-        Click Me
-      </button>
-      <h1>{heading}</h1>
-      <h2>{homeData.title}</h2>
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };
