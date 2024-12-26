@@ -2,6 +2,7 @@ import App from "./App";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import BlogPage from "./pages/BlogPage/BlogPage";
 // import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
       { index: true, element: <HomePage /> },
       { path: "login", element: <LoginPage /> },
       { path: "sign-up", element: <SignUpPage /> },
+      { path: "posts", element: <BlogPage /> },
     ],
   },
 ];
