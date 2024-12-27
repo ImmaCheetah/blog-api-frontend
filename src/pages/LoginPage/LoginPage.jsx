@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [response, setResponse] = useState();
   let navigate = useNavigate();
 
   function redirectUser() {
@@ -18,24 +19,47 @@ export default function LoginPage() {
     
     console.log(form);
 
-    loginFetch(username, password)
+    loginFetch(username, password);
     const formJson = Object.fromEntries(form.entries());
     console.log(formJson);
     redirectUser();
   }
 
   async function loginFetch(username, password) {
-    const response = await fetch('http://localhost:8080/user/login', {
+    // const response = await fetch('http://localhost:8080/user/login', {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     username: username,
+    //     password: password,
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+
+    fetch('http://localhost:8080/user/login', {
       method: "POST",
-      body: new URLSearchParams({
-        'username': username,
-        'password': password,
-    }),
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
       headers: {
-        // 'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
     })
+    .then((response) => {
+      if (response.status >= 400) {
+        throw new Error("server error");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      setResponse(data);
+    })
+    // .catch((error) => setError(error))
+    
+    // console.log(response);
   }
 
   return (
