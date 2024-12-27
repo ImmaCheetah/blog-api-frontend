@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import BlogCard from '../../components/BlogCard/BlogCard';
+
 
 export default function SignUpPage() {
   const [posts, setPosts] = useState([]);
@@ -38,10 +40,13 @@ export default function SignUpPage() {
         posts && 
         posts.map((post) => {
           return (
-            <>
-              <h1>{post.title}</h1>
-              <h2>{post.content}</h2>
-            </>
+            <BlogCard 
+              key={post.id}
+              title={post.title}
+              content={post.content}
+              timestamp={post.timestamp}
+              author={post.author.username}
+            />
           )
         })
       }
