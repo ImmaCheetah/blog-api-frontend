@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [response, setResponse] = useState();
+  const [token, setToken] = useState();
   let navigate = useNavigate();
 
   function redirectUser() {
@@ -17,26 +17,11 @@ export default function LoginPage() {
     const username = form.get("username");
     const password = form.get("password");
     
-    console.log(form);
-
     loginFetch(username, password);
-    const formJson = Object.fromEntries(form.entries());
-    console.log(formJson);
     redirectUser();
   }
 
   async function loginFetch(username, password) {
-    // const response = await fetch('http://localhost:8080/user/login', {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     username: username,
-    //     password: password,
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-
     fetch('http://localhost:8080/user/login', {
       method: "POST",
       body: JSON.stringify({
@@ -55,7 +40,8 @@ export default function LoginPage() {
     })
     .then((data) => {
       console.log(data);
-      setResponse(data);
+      setToken(data);
+      localStorage.setItem("JWT", data.token)
     })
     // .catch((error) => setError(error))
     
