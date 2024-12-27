@@ -5,6 +5,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState();
+  const [error, setError] = useState();
   let navigate = useNavigate();
 
   function redirectUser() {
@@ -21,7 +22,7 @@ export default function LoginPage() {
     redirectUser();
   }
 
-  async function loginFetch(username, password) {
+  function loginFetch(username, password) {
     fetch('http://localhost:8080/user/login', {
       method: "POST",
       body: JSON.stringify({
@@ -43,9 +44,7 @@ export default function LoginPage() {
       setToken(data);
       localStorage.setItem("JWT", data.token)
     })
-    // .catch((error) => setError(error))
-    
-    // console.log(response);
+    .catch((error) => setError(error))
   }
 
   return (
