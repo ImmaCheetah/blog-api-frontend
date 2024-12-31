@@ -11,7 +11,7 @@ export default function SignUpPage() {
   let navigate = useNavigate();
 
   function redirectUser() {
-    navigate('/', {replace: true})
+    navigate('/login', {replace: true})
   }
 
   function handleSubmit(e) {
@@ -26,41 +26,39 @@ export default function SignUpPage() {
     console.log(formJson);
     
     signUpFetch(username, email, password, confirmPassword);
-    // redirectUser();
   }
 
-  function signUpFetch(username, email, password, confirmPassword) {
-    fetch('http://localhost:8080/user/sign-up', {
-      method: "POST",
-      body: JSON.stringify({
-        username: username,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => {
-      console.log(response);
+  async function signUpFetch(username, email, password, confirmPassword) {
+    try {
+      const response = await fetch('http://localhost:8080/user/sign-up', {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
       if (response.status === 400) {
-        // setError(response.errors)
+        const errors = await response.json();
+        setError(errors.errors);
       }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data.errors);
-      setError(data.errors)
-      // setError(data);
-      // localStorage.setItem("JWT", data.token)
-    })
-    // .catch((error) => setError(error))
+
+      if (response.status === 200) {
+        redirectUser();
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <>
-      <h1>SiGN UP PAGE</h1>
+      <h1>SIGN UP PAGE</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input 
@@ -95,16 +93,14 @@ export default function SignUpPage() {
           required
         />
         <button type="submit">Sign Up</button>
+      </form>
         {
           error && error.map((err, index) => {
             return (
-              <>
-                <li key={index}>{err.msg}</li>
-              </>
+              <li key={index}>{err.msg}</li>
             )
           })
         }
-      </form>
     </>
   );
 }
