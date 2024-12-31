@@ -46,6 +46,7 @@ export default function SignUpPage() {
               content={post.content}
               timestamp={post.timestamp}
               author={post.author.username}
+              postId={post.id}
             />
           )
         })
