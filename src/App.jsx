@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext} from 'react'
 import { Outlet } from "react-router-dom";
 import PropTypes from 'prop-types';
 import './App.css'
 import Navbar from "./components/Navbar/Navbar";
+import AuthProvider from './components/AuthProvider/AuthProvider';
 
 const RenderName = (props) => {
   return <div>{props.name}</div>;
@@ -35,14 +36,14 @@ const App = () => {
   if (error) return <p>Network error innit</p>
 
   return (
-    <>
+    <AuthProvider>
       <header>
         <Navbar />
       </header>
       <main>
-        <Outlet />
+          <Outlet />
       </main>
-    </>
+    </AuthProvider>
   );
 };
 

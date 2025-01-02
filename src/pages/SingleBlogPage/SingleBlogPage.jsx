@@ -1,16 +1,22 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useParams } from "react-router";
 import Comment from '../../components/Comment/Comment';
-
 
 export default function SingleBlogPage() {
   let {postId} = useParams();
   const [post, setPost] = useState(null);
+  // const [user, setUser] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log(postId);
+  let token = localStorage.getItem('JWT');
+
   useEffect(() => {
-    fetch(`http://localhost:8080/posts/${postId}`)
+    fetch(`http://localhost:8080/posts/${postId}`, {
+      method: "GET",
+      headers: {
+        'Authorization': token
+      }
+    })
     .then((response) => {
       if (response.status >= 400) {
         throw new Error("server error");

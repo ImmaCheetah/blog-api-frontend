@@ -1,19 +1,24 @@
+import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  const auth = useAuth();
+
   return (
     <nav>
       <h1 className={styles.shopName}>Blog</h1>
       <NavLink to='/'>
-        <button data-testid='homeLink' className={styles.navBtn}>Home</button>
+        <button className={styles.navBtn}>Home</button>
       </NavLink>
-      <NavLink to='login'>
-        <button data-testid='shopLink' className={styles.navBtn}>Login</button>
-      </NavLink>
-      <NavLink to='sign-up'>
-        <button data-testid='cartLink' className={styles.navBtn}>Sign Up</button>
-      </NavLink>
+      {
+        auth.user ?
+        <button className={styles.navBtn} onClick={() => auth.logOut()}>Log Out</button>
+        :
+        <NavLink to='login'>
+          <button className={styles.navBtn}>Login</button>
+        </NavLink>
+      }
     </nav>
   );
 }
