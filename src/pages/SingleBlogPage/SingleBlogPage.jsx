@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router";
+import Comment from '../../components/Comment/Comment';
+
 
 export default function SingleBlogPage() {
   let {postId} = useParams();
   const [post, setPost] = useState(null);
   const [error, setError] = useState(null);
 
-  console.log('FIRST POST', post)
   console.log(postId);
   useEffect(() => {
     fetch(`http://localhost:8080/posts/${postId}`)
@@ -33,6 +34,16 @@ export default function SingleBlogPage() {
           <p>{post.timestamp}</p>
           <p>{post.content}</p>
           <p>{post.author.username}</p>
+            {post.comments.map((comment) => {
+              return (
+                <Comment
+                  key={comment.id}
+                  author={comment.author.username}
+                  content={comment.content}
+                  timestamp={comment.timestamp}
+                />
+              )
+            })}
         </div>
       }
     </>
