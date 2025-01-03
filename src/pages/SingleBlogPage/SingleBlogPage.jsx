@@ -1,20 +1,24 @@
 import { useState, useEffect, useContext } from 'react'
 import { useParams } from "react-router";
 import Comment from '../../components/Comment/Comment';
+import { useAuth } from '../../components/AuthProvider/AuthProvider';
+import CommentForm from '../../components/CommentForm/CommentForm';
+
 
 export default function SingleBlogPage() {
   let {postId} = useParams();
   const [post, setPost] = useState(null);
-  // const [user, setUser] = useState(true);
   const [error, setError] = useState(null);
+  const auth = useAuth();
 
-  let token = localStorage.getItem('JWT');
+
+  // let token = localStorage.getItem('JWT');
 
   useEffect(() => {
     fetch(`http://localhost:8080/posts/${postId}`, {
       method: "GET",
       headers: {
-        'Authorization': token
+        // 'Authorization': token
       }
     })
     .then((response) => {
@@ -33,6 +37,7 @@ export default function SingleBlogPage() {
 
   return (
     <>
+      {auth.user && <p>USER LOGGED IN</p>}
       {post &&
         <div>
           <h1>SINGLE BLOG PAGE</h1>
@@ -40,6 +45,7 @@ export default function SingleBlogPage() {
           <p>{post.timestamp}</p>
           <p>{post.content}</p>
           <p>{post.author.username}</p>
+          <CommentForm />
             {post.comments.map((comment) => {
               return (
                 <Comment

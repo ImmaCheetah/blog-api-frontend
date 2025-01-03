@@ -51,7 +51,7 @@ export default function LoginPage() {
         <label htmlFor="password">Password</label>
         <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required/>
         <button type="submit">Log In</button>
-        <p>Don't have an account? <NavLink to="/sign-up">Sign Up</NavLink></p>
+        <p>Don&apos;t have an account? <NavLink to="/sign-up">Sign Up</NavLink></p>
       </form>
     </>
   );

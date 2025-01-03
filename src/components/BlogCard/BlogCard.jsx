@@ -1,4 +1,4 @@
-// import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 export default function BlogCard({title, content, timestamp, author, postId}) {
@@ -8,8 +8,7 @@ export default function BlogCard({title, content, timestamp, author, postId}) {
       <p>{content}</p>
       <p>{timestamp}</p>
       <p>{author}</p>
-      {/* <Link to={'/posts/'+ postId}>View Post</Link> */}
-      <a href={'/posts/'+ postId}> View Post</a>
+      <Link to={'/posts/'+ postId}>View Post</Link>
     </div>
   )
 }
