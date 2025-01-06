@@ -16,7 +16,7 @@ export default function SignUpPage() {
   }
 
   function limitText(content) {
-    return content.slice(0, 250)
+    return content.slice(0, 200)
   }
 
   useEffect(() => {

@@ -1,18 +1,15 @@
+import styles from "./SingleBlogPage.module.css";
 import { useState, useEffect, useContext } from 'react'
 import { useParams } from "react-router";
 import Comment from '../../components/Comment/Comment';
 import { useAuth } from '../../components/AuthProvider/AuthProvider';
 import CommentForm from '../../components/CommentForm/CommentForm';
 
-
 export default function SingleBlogPage() {
   let {postId} = useParams();
   const [post, setPost] = useState(null);
   const [error, setError] = useState(null);
   const auth = useAuth();
-
-
-  // let token = localStorage.getItem('JWT');
 
   useEffect(() => {
     fetch(`http://localhost:8080/posts/${postId}`, {
