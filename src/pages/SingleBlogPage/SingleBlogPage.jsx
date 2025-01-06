@@ -41,14 +41,14 @@ export default function SingleBlogPage() {
 
   return (
     <>
-      {auth.user && <p>USER LOGGED IN</p>}
       {post &&
-        <div>
-          <h1>SINGLE BLOG PAGE</h1>
-          <h2>{post.title}</h2>
-          <p>Written By: {post.author.username}</p>
-          <p>{formatDate(post.timestamp)}</p>
-          <p>{post.content}</p>
+        <div className={styles.postDiv}>
+          <div className={styles.postHeader}>
+            <h2>{post.title}</h2>
+            <p>Written By: {post.author.username}</p>
+            <p>{formatDate(post.timestamp)}</p>
+          </div>
+          <p className={styles.postContent}>{post.content}</p>
           <CommentForm />
             {post.comments.map((comment) => {
               return (
