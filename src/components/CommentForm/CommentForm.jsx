@@ -1,7 +1,7 @@
+import styles from "./CommentForm.module.css";
 import { useState } from "react";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import { useParams } from "react-router";
-// import styles from "./CommentForm.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 
 
@@ -45,11 +45,13 @@ export default function CommentForm() {
     <>
       {
         auth.user ?
-        <form onSubmit={handleSubmit}>
-          <input 
+        <form className={styles.commentForm} onSubmit={handleSubmit}>
+          <label htmlFor="content">Leave a comment</label>
+          <textarea 
             type="text" 
             name="content"
             value={comment}
+            placeholder="What a great blog"
             onChange={e => setComment(e.target.value)} 
             required
           />
@@ -57,7 +59,7 @@ export default function CommentForm() {
         </form>
         :
         <p>
-          <NavLink to="/login">Log In</NavLink> to comment
+          <NavLink className={styles.commentLogin} to="/login">Log In</NavLink> to comment
         </p>
       }
     </>
