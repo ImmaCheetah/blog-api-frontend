@@ -1,5 +1,5 @@
-import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./Navbar.module.css";
+import { useAuth } from "../AuthProvider/AuthProvider";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
@@ -7,9 +7,11 @@ export default function Navbar() {
 
   return (
     <nav>
-      <h1 className={styles.shopName}>Blog</h1>
-      <NavLink to='/'>
-        <button className={styles.navBtn}>Home</button>
+      <NavLink className={styles.blogNameLink} to='/'>
+        <button className={styles.blogName}>Blog and Such</button>
+      </NavLink>
+      <NavLink to='/posts'>
+        <button className={styles.navBtn}>Posts</button>
       </NavLink>
       {
         auth.user ?
