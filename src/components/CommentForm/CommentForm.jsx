@@ -1,30 +1,33 @@
 import { useAuth } from "../AuthProvider/AuthProvider";
 import { useParams } from "react-router";
 // import styles from "./CommentForm.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
 
 export default function CommentForm() {
   const auth = useAuth();
   let {postId} = useParams();
-  
+  let navigate = useNavigate();
+
   function handleSubmit(e) {
     e.preventDefault();
     const form = new FormData(e.target);
     const content = form.get("content");
 
-    commentFetch(auth.user.id, postId, content);
+    commentFetch(postId, content);
+    navigate(`/posts/${postId}`)
   }
   
-  async function commentFetch(userId, postId, content) {
+  async function commentFetch(postId, content) {
     try {
       const response = await fetch(`http://localhost:8080/posts/${postId}/comments`, {
         method: "POST",
         body: JSON.stringify({
-          userId: userId,
           content: content,
         }),
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': auth.token
         },
       })
 
