@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import { useParams } from "react-router";
 // import styles from "./CommentForm.module.css";
@@ -6,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 export default function CommentForm() {
   const auth = useAuth();
+  const [comment, setComment] = useState('');
   let {postId} = useParams();
   let navigate = useNavigate();
 
@@ -15,6 +17,7 @@ export default function CommentForm() {
     const content = form.get("content");
 
     commentFetch(postId, content);
+    setComment('');
     navigate(`/posts/${postId}`)
   }
   
@@ -43,7 +46,13 @@ export default function CommentForm() {
       {
         auth.user ?
         <form onSubmit={handleSubmit}>
-          <input type="text" name="content" required/>
+          <input 
+            type="text" 
+            name="content"
+            value={comment}
+            onChange={e => setComment(e.target.value)} 
+            required
+          />
           <button type="submit">Submit</button>
         </form>
         :

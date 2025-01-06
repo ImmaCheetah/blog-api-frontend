@@ -32,7 +32,7 @@ export default function SingleBlogPage() {
       setPost(data.post);
     })
     .catch((error) => setError(error))
-  }, [])
+  }, [post])
 
 
   return (
