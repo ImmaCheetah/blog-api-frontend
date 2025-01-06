@@ -1,14 +1,15 @@
+import styles from "./BlogCard.module.css";
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 export default function BlogCard({title, content, timestamp, author, postId}) {
   return (
-    <div>
-      <h1>{title}</h1>
+    <div className={styles.cardDiv}>
+      <div className={styles.cardHeader}>
+        <h2>{title}</h2>
+      </div>
       <p>{content}</p>
-      <p>{timestamp}</p>
-      <p>{author}</p>
-      <Link to={'/posts/'+ postId}>View Post</Link>
+      <Link to={'/posts/'+ postId} className={styles.cardBtn}>View Post</Link>
     </div>
   )
 }

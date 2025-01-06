@@ -6,6 +6,19 @@ export default function SignUpPage() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
 
+  function formatDate(timestamp) {
+    const date = new Date(timestamp)
+    return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    })
+  }
+
+  function limitText(content) {
+    return content.slice(0, 250)
+  }
+
   useEffect(() => {
     fetch('http://localhost:8080/posts')
     .then((response) => {
@@ -21,21 +34,9 @@ export default function SignUpPage() {
     .catch((error) => setError(error))
   }, [])
 
-  // const postsArray = posts.map(post => {
-  //   return (
-  //     <>
-  //       <h1>{post.title}</h1>
-  //       <h2>{post.content}</h2>
-  //     </>
-  //   )
-  // });
-
-  // setPosts(posts.posts)
-
   return (
     <>
       <h1>BLOG PAGE</h1>
-      {/* {postsArray} */}
       {
         posts && 
         posts.map((post) => {
@@ -43,8 +44,8 @@ export default function SignUpPage() {
             <BlogCard 
               key={post.id}
               title={post.title}
-              content={post.content}
-              timestamp={post.timestamp}
+              content={limitText(post.content)}
+              timestamp={formatDate(post.timestamp)}
               author={post.author.username}
               postId={post.id}
             />
