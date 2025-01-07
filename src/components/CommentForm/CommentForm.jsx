@@ -4,8 +4,7 @@ import { useAuth } from "../AuthProvider/AuthProvider";
 import { useParams } from "react-router";
 import { NavLink, useNavigate } from "react-router-dom";
 
-
-export default function CommentForm() {
+export default function CommentForm({handleComment}) {
   const auth = useAuth();
   const [comment, setComment] = useState('');
   let {postId} = useParams();
@@ -17,6 +16,7 @@ export default function CommentForm() {
     const content = form.get("content");
 
     commentFetch(postId, content);
+    handleComment('test name', 'test comment', '200');
     setComment('');
     navigate(`/posts/${postId}`)
   }

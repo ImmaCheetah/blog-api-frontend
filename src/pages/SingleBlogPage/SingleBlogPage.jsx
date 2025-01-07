@@ -4,10 +4,12 @@ import { useParams } from "react-router";
 import Comment from '../../components/Comment/Comment';
 import { useAuth } from '../../components/AuthProvider/AuthProvider';
 import CommentForm from '../../components/CommentForm/CommentForm';
+import CommentSection from "../../components/CommentSection/CommentSection";
 
 export default function SingleBlogPage() {
   let {postId} = useParams();
   const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
   const auth = useAuth();
 
@@ -18,6 +20,21 @@ export default function SingleBlogPage() {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
+    })
+  }
+
+  function handleComment(author, content, timestamp) {
+    setComments((prevComments) => {
+      return [
+        ...prevComments,
+        {
+          author: {
+            username: author
+          },
+          content: content,
+          timestamp: timestamp
+        }
+      ]
     })
   }
 
@@ -34,6 +51,8 @@ export default function SingleBlogPage() {
     .then((data) => {
       console.log(data.post);
       setPost(data.post);
+      setComments(data.post.comments)
+      console.log(comments);
     })
     .catch((error) => setError(error))
   }, [])
@@ -49,7 +68,11 @@ export default function SingleBlogPage() {
             <p>{formatDate(post.timestamp)}</p>
           </div>
           <p className={styles.postContent}>{post.content}</p>
-          <CommentForm />
+          <CommentSection 
+          comments={comments} 
+          handleComment={handleComment}
+          />
+          {/* <CommentForm />
             {post.comments.map((comment) => {
               return (
                 <Comment
@@ -59,7 +82,7 @@ export default function SingleBlogPage() {
                   timestamp={comment.timestamp}
                 />
               )
-            })}
+            })} */}
         </div>
       }
     </>
