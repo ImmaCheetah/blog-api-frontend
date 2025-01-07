@@ -16,7 +16,6 @@ export default function CommentForm({handleComment}) {
     const content = form.get("content");
 
     commentFetch(postId, content);
-    handleComment('test name', 'test comment', '200');
     setComment('');
     navigate(`/posts/${postId}`)
   }
@@ -33,9 +32,10 @@ export default function CommentForm({handleComment}) {
           'Authorization': auth.token
         },
       })
-
+      
       const res = await response.json();
-      console.log(res)
+      console.log(res.comment.author.username, res.comment.content, res.comment.timestamp)
+      handleComment(res.comment.author.username, res.comment.content, res.comment.timestamp);
     } catch (error) {
       console.log(error);
     }

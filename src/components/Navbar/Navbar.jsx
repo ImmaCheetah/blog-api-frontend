@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const auth = useAuth();
-
+  console.log(auth.user)
   return (
     <nav>
       <NavLink className={styles.blogNameLink} to='/'>
@@ -21,6 +21,7 @@ export default function Navbar() {
           <button className={styles.navBtn}>Login</button>
         </NavLink>
       }
+      <p>{auth.user.username}</p>
     </nav>
   );
 }

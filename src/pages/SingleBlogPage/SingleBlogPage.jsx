@@ -26,14 +26,14 @@ export default function SingleBlogPage() {
   function handleComment(author, content, timestamp) {
     setComments((prevComments) => {
       return [
-        ...prevComments,
         {
           author: {
             username: author
           },
           content: content,
           timestamp: timestamp
-        }
+        },
+        ...prevComments,
       ]
     })
   }
