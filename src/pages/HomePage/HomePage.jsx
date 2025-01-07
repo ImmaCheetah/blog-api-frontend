@@ -9,7 +9,7 @@ export default function HomePage() {
 
   return (
     <>
-      <h1>HOME PAGE</h1>
+      <h2>Welcome to my blog</h2>
       <button onClick={handleBlogBtn}>View Blog</button>
     </>
   );

@@ -1,3 +1,4 @@
+import styles from "./BlogPage.module.css";
 import { useState, useEffect } from 'react'
 import BlogCard from '../../components/BlogCard/BlogCard';
 
@@ -36,21 +37,22 @@ export default function SignUpPage() {
 
   return (
     <>
-      <h1>BLOG PAGE</h1>
       {
         posts && 
-        posts.map((post) => {
-          return (
-            <BlogCard 
-              key={post.id}
-              title={post.title}
-              content={limitText(post.content)}
-              timestamp={formatDate(post.timestamp)}
-              author={post.author.username}
-              postId={post.id}
-            />
-          )
-        })
+        <div className={styles.postsDiv}>
+          {posts.map((post) => {
+            return (
+              <BlogCard 
+                key={post.id}
+                title={post.title}
+                content={limitText(post.content)}
+                timestamp={formatDate(post.timestamp)}
+                author={post.author.username}
+                postId={post.id}
+              />
+            )
+          })}
+        </div>
       }
     </>
   );

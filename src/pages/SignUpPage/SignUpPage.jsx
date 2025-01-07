@@ -1,3 +1,4 @@
+import styles from "./SignUpPage.module.css";
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -58,37 +59,41 @@ export default function SignUpPage() {
 
   return (
     <>
-      <h1>SIGN UP PAGE</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
+      <form className={styles.signUpForm} onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
+        <label htmlFor="username"></label>
         <input 
           type="text" 
           name="username" 
-          value={username} 
+          value={username}
+          placeholder='Username' 
           onChange={e => setUsername(e.target.value)} 
           required
         />
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email"></label>
         <input 
           type="email" 
           name="email"
-          value={email} 
+          value={email}
+          placeholder='Email' 
           onChange={e => setEmail(e.target.value)}
           required
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password"></label>
         <input 
           type="password" 
           name="password" 
-          value={password} 
+          value={password}
+          placeholder='Password' 
           onChange={e => setPassword(e.target.value)} 
           required
         />
-        <label htmlFor="confirmPassword">Confirm Password</label>
+        <label htmlFor="confirmPassword"></label>
         <input 
           type="password" 
           name="confirmPassword" 
-          value={confirmPassword} 
+          value={confirmPassword}
+          placeholder='Confirm Password' 
           onChange={e => setConfirmPassword(e.target.value)} 
           required
         />

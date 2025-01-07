@@ -1,3 +1,4 @@
+import styles from "./LoginPage.module.css";
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../components/AuthProvider/AuthProvider';
 import { NavLink } from "react-router-dom";
@@ -17,39 +18,28 @@ export default function LoginPage() {
     auth.loginFetch(username, password);
   }
 
-  // function loginFetch(username, password) {
-  //   fetch('http://localhost:8080/user/login', {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       username: username,
-  //       password: password,
-  //     }),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   .then((response) => {
-  //     if (response.status >= 400) {
-  //       throw new Error("server error");
-  //     }
-  //     return response.json();
-  //   })
-  //   .then((data) => {
-  //     console.log(data);
-  //     setToken(data);
-  //     localStorage.setItem("JWT", data.token)
-  //   })
-  //   .catch((error) => setError(error))
-  // }
-
   return (
     <>
-      <h1>LOGIN PAGE</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} required/>
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required/>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <label htmlFor="username"></label>
+        <input 
+          type="text" 
+          name="username" 
+          value={username}
+          placeholder="Username" 
+          onChange={e => setUsername(e.target.value)} 
+          required
+        />
+        <label htmlFor="password"></label>
+        <input 
+          type="password" 
+          name="password" 
+          value={password}
+          placeholder="Password" 
+          onChange={e => setPassword(e.target.value)} 
+          required
+        />
         <button type="submit">Log In</button>
         <p>Don&apos;t have an account? <NavLink to="/sign-up">Sign Up</NavLink></p>
       </form>
