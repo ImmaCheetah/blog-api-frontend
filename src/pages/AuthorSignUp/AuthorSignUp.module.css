@@ -1,0 +1,10 @@
+.authorSignUpForm {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  gap: 1rem;
+}
+
+.authorSignUpForm input {
+  width: 10rem;
+}

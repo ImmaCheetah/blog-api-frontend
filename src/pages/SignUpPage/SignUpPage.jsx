@@ -102,7 +102,7 @@ export default function SignUpPage() {
         {
           error && error.map((err, index) => {
             return (
-              <li key={index}>{err.msg}</li>
+              <p key={index}>{err.msg}</p>
             )
           })
         }

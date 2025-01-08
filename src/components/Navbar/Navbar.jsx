@@ -15,13 +15,18 @@ export default function Navbar() {
       </NavLink>
       {
         auth.user ?
+        <>
+        <NavLink to='/user/author/sign-up'>
+          <button className={styles.navBtn}>Become an Author</button>
+        </NavLink>
         <button className={styles.navBtn} onClick={() => auth.logOut()}>Log Out</button>
+        </>
         :
-        <NavLink to='login'>
+        <NavLink to='/login'>
           <button className={styles.navBtn}>Login</button>
         </NavLink>
       }
-      <p>{auth.user.username}</p>
+      {/* <p>{auth.user.username}</p> */}
     </nav>
   );
 }

@@ -22,6 +22,7 @@ export default function CommentForm({handleComment}) {
   
   async function commentFetch(postId, content) {
     try {
+      console.log('AUTH USER FROM COMMENT FETCH', auth.user)
       const response = await fetch(`http://localhost:8080/posts/${postId}/comments`, {
         method: "POST",
         body: JSON.stringify({
@@ -34,6 +35,7 @@ export default function CommentForm({handleComment}) {
       })
       
       const res = await response.json();
+      console.log('COMMENT SUBMIT RESPONSE', res)
       console.log(res.comment.author.username, res.comment.content, res.comment.timestamp)
       handleComment(res.comment.author.username, res.comment.content, res.comment.timestamp);
     } catch (error) {

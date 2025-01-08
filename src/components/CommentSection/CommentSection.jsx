@@ -5,7 +5,7 @@ import Comment from "../Comment/Comment";
 export default function CommentSection({comments, handleComment}) {
   return (
     <>
-      <CommentForm handleComment={handleComment}/>
+      <CommentForm key={1} handleComment={handleComment}/>
       {
         comments.map((comment) => {
           return (
