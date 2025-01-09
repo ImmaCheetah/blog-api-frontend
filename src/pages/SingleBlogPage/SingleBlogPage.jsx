@@ -3,12 +3,15 @@ import { useState, useEffect } from 'react'
 import { useParams } from "react-router";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import CommentForm from "../../components/CommentForm/CommentForm";
+import Error from "../../components/Error/Error";
+
 
 export default function SingleBlogPage() {
   let {postId} = useParams();
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   function formatDate(timestamp) {
     const date = new Date(timestamp)
@@ -36,22 +39,35 @@ export default function SingleBlogPage() {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:8080/posts/${postId}`, {
-      method: "GET",
-    })
-    .then((response) => {
-      if (response.status >= 400) {
-        throw new Error("server error");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      setPost(data.post);
-      setComments(data.post.comments)
-    })
-    .catch((error) => setError(error))
-  }, [])
+    const data = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/posts/${postId}`, {
+          method: "GET",
+        })
 
+        if (response.status >= 400) {
+          const errors = await response.json();
+          console.log(errors)
+          setError(errors)
+        }
+
+        if (response.status === 200) {
+          const res = await response.json();
+          setPost(res.post);
+          setComments(res.post.comments)
+        }
+
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    data();
+  }, [])
+  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <Error name={error.name} status={error.status} message={error.errorMsg} />
 
   return (
     <>

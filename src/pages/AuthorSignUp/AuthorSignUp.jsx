@@ -46,7 +46,7 @@ export default function AuthorSignUp() {
   return (
     <>
       {
-        auth.user ?
+        auth.token ?
         <>
           
           <h2>Enter password to become an author</h2>
@@ -55,6 +55,7 @@ export default function AuthorSignUp() {
             <input 
               type="password"
               name="password"
+              placeholder="Password"
               value={password}
               onChange={e => setPassword(e.target.value)}
             />

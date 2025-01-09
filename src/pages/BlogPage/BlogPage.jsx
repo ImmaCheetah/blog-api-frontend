@@ -1,11 +1,13 @@
 import styles from "./BlogPage.module.css";
 import { useState, useEffect } from 'react'
 import BlogCard from '../../components/BlogCard/BlogCard';
+import Error from "../../components/Error/Error";
 
 
 export default function SignUpPage() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   function formatDate(timestamp) {
     const date = new Date(timestamp)
@@ -21,19 +23,34 @@ export default function SignUpPage() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:8080/posts')
-    .then((response) => {
-      if (response.status >= 400) {
-        throw new Error("server error");
+    const data = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/posts`, {
+          method: "GET",
+        })
+
+        if (response.status >= 400) {
+          const errors = await response.json();
+          console.log(errors)
+          setError(errors)
+        }
+
+        if (response.status === 200) {
+          const res = await response.json();
+          setPosts(res.posts);
+        }
+
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data.posts);
-      setPosts(data.posts);
-    })
-    .catch((error) => setError(error))
+    }
+    data();
   }, [])
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <Error name={error.name} status={error.status} message={error.errorMsg} />
 
   return (
     <>
