@@ -12,13 +12,12 @@ export default function AuthorSignUp() {
     const form = new FormData(e.target);
     const password = form.get("password");
 
-    window.open('https://www.youtube.com/', "_blank")
     authorFetch(password);
   }
 
   async function authorFetch(password) {
     try {
-      const response = fetch(`http://localhost:8080/user/author/sign-up`, {
+      const response = await fetch(`http://localhost:8080/user/author/sign-up`, {
         method: 'POST',
         body: JSON.stringify({
           password: password,
@@ -28,17 +27,17 @@ export default function AuthorSignUp() {
           'Authorization': auth.token
         },
       })
-
-      if (response.status === 400) {
+      
+      if (response.status >= 400) {
         const errors = await response.json();
-        setError(errors.errors);
+        setError(errors.message);
       }
-
+      
       if (response.status === 200) {
         const res = await response.json();
+        window.open('https://www.google.com/', "_blank")
         console.log(res)
       }
-
     } catch (error) {
       console.log(error)
     }
@@ -49,9 +48,9 @@ export default function AuthorSignUp() {
       {
         auth.user ?
         <>
-          <h1>sign up for author</h1>
+          <h2>Enter password to become an author</h2>
           <form className={styles.authorSignUpForm} onSubmit={handleSubmit}>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password"></label>
             <input 
               type="password"
               name="password"
@@ -60,9 +59,10 @@ export default function AuthorSignUp() {
             />
             <button type="submit">Submit</button>
           </form>
+          {error && <p>{error}</p>}
         </>
         :
-        <h1>You should not be here</h1>
+        <h2>You should not be here</h2>
       }
       
     </>
