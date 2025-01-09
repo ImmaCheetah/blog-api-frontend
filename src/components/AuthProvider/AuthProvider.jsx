@@ -13,25 +13,25 @@ export default function AuthProvider({ children }) {
 
   async function loginFetch(username, password) {
     try {
-      const response = await fetch('http://localhost:8080/user/login', {
+      const response = await fetch("http://localhost:8080/user/login", {
         method: "POST",
         body: JSON.stringify({
           username: username,
           password: password,
         }),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-      })
+      });
 
       const res = await response.json();
       if (res.user) {
-        setUser(res.user)
-        setToken(res.token)
-        console.log('USER FROM LOGIN', res.user)
-        console.log('USER FROM LOGIN', res.token)
+        setUser(res.user);
+        setToken(res.token);
+        console.log("USER FROM LOGIN", res.user);
+        console.log("USER FROM LOGIN", res.token);
         localStorage.setItem("JWT", res.token);
-        navigate('/');
+        navigate("/");
         return;
       }
       throw new Error(res.message);

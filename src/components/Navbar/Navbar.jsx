@@ -7,27 +7,26 @@ export default function Navbar() {
   // console.log(auth.user)
   return (
     <nav>
-      <NavLink className={styles.blogNameLink} to='/'>
+      <NavLink className={styles.blogNameLink} to="/">
         <button className={styles.blogName}>Blog and Such</button>
       </NavLink>
-      <NavLink to='/posts'>
+      <NavLink to="/posts">
         <button className={styles.navBtn}>Posts</button>
       </NavLink>
-      {
-        auth.token ?
+      {auth.token ? (
         <>
-        <NavLink to='/user/author/sign-up'>
-          <button className={styles.navBtn}>Become an Author</button>
-        </NavLink>
-        <button className={styles.navBtn} onClick={() => auth.logOut()}>Log Out</button>
+          <NavLink to="/user/author/sign-up">
+            <button className={styles.navBtn}>Become an Author</button>
+          </NavLink>
+          <button className={styles.navBtn} onClick={() => auth.logOut()}>
+            Log Out
+          </button>
         </>
-        :
-        <NavLink to='/login'>
+      ) : (
+        <NavLink to="/login">
           <button className={styles.navBtn}>Login</button>
         </NavLink>
-      }
+      )}
     </nav>
   );
 }
-
-

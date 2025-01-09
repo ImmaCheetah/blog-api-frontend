@@ -1,11 +1,11 @@
 import styles from "./LoginPage.module.css";
-import { useState, useEffect } from 'react'
-import { useAuth } from '../../components/AuthProvider/AuthProvider';
+import { useState, useEffect } from "react";
+import { useAuth } from "../../components/AuthProvider/AuthProvider";
 import { NavLink } from "react-router-dom";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState();
 
   const auth = useAuth();
@@ -14,7 +14,7 @@ export default function LoginPage() {
     const form = new FormData(e.target);
     const username = form.get("username");
     const password = form.get("password");
-    
+
     auth.loginFetch(username, password);
   }
 
@@ -23,25 +23,27 @@ export default function LoginPage() {
       <form className={styles.loginForm} onSubmit={handleSubmit}>
         <h2>Login</h2>
         <label htmlFor="username"></label>
-        <input 
-          type="text" 
-          name="username" 
+        <input
+          type="text"
+          name="username"
           value={username}
-          placeholder="Username" 
-          onChange={e => setUsername(e.target.value)} 
+          placeholder="Username"
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
         <label htmlFor="password"></label>
-        <input 
-          type="password" 
-          name="password" 
+        <input
+          type="password"
+          name="password"
           value={password}
-          placeholder="Password" 
-          onChange={e => setPassword(e.target.value)} 
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit">Log In</button>
-        <p>Don&apos;t have an account? <NavLink to="/sign-up">Sign Up</NavLink></p>
+        <p>
+          Don&apos;t have an account? <NavLink to="/sign-up">Sign Up</NavLink>
+        </p>
       </form>
     </>
   );

@@ -4,7 +4,7 @@ import { useAuth } from "../../components/AuthProvider/AuthProvider";
 
 export default function AuthorSignUp() {
   const auth = useAuth();
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   function handleSubmit(e) {
@@ -17,56 +17,56 @@ export default function AuthorSignUp() {
 
   async function authorFetch(password) {
     try {
-      const response = await fetch(`http://localhost:8080/user/author/sign-up`, {
-        method: 'POST',
-        body: JSON.stringify({
-          password: password,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': auth.token
+      const response = await fetch(
+        `http://localhost:8080/user/author/sign-up`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            password: password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: auth.token,
+          },
         },
-      })
-      
+      );
+
       if (response.status >= 400) {
         const errors = await response.json();
         setError(errors.message);
       }
-      
+
       if (response.status === 200) {
         const res = await response.json();
-        window.open('https://www.google.com/', "_blank")
-        console.log(res)
+        window.open("https://www.google.com/", "_blank");
+        console.log(res);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   return (
     <>
-      {
-        auth.token ?
+      {auth.token ? (
         <>
-          
           <h2>Enter password to become an author</h2>
           <form className={styles.authorSignUpForm} onSubmit={handleSubmit}>
             <label htmlFor="password"></label>
-            <input 
+            <input
               type="password"
               name="password"
               placeholder="Password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">Submit</button>
           </form>
           {error && <p>{error}</p>}
         </>
-        :
+      ) : (
         <h2>You should not be here</h2>
-      }
-      
+      )}
     </>
-  )
+  );
 }

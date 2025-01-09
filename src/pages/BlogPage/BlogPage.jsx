@@ -1,8 +1,7 @@
 import styles from "./BlogPage.module.css";
-import { useState, useEffect } from 'react'
-import BlogCard from '../../components/BlogCard/BlogCard';
+import { useState, useEffect } from "react";
+import BlogCard from "../../components/BlogCard/BlogCard";
 import Error from "../../components/Error/Error";
-
 
 export default function SignUpPage() {
   const [posts, setPosts] = useState([]);
@@ -10,16 +9,16 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(true);
 
   function formatDate(timestamp) {
-    const date = new Date(timestamp)
-    return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    })
+    const date = new Date(timestamp);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
   }
 
   function limitText(content) {
-    return content.slice(0, 300)
+    return content.slice(0, 300);
   }
 
   useEffect(() => {
@@ -27,39 +26,40 @@ export default function SignUpPage() {
       try {
         const response = await fetch(`http://localhost:8080/posts`, {
           method: "GET",
-        })
+        });
 
         if (response.status >= 400) {
           const errors = await response.json();
-          console.log(errors)
-          setError(errors)
+          console.log(errors);
+          setError(errors);
         }
 
         if (response.status === 200) {
           const res = await response.json();
           setPosts(res.posts);
         }
-
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
-    }
+    };
     data();
-  }, [])
+  }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <Error name={error.name} status={error.status} message={error.errorMsg} />
+  if (error)
+    return (
+      <Error name={error.name} status={error.status} message={error.errorMsg} />
+    );
 
   return (
     <>
-      {
-        posts && 
+      {posts && (
         <div className={styles.postsDiv}>
           {posts.map((post) => {
             return (
-              <BlogCard 
+              <BlogCard
                 key={post.id}
                 title={post.title}
                 content={limitText(post.content)}
@@ -67,10 +67,10 @@ export default function SignUpPage() {
                 author={post.author.username}
                 postId={post.id}
               />
-            )
+            );
           })}
         </div>
-      }
+      )}
     </>
   );
 }

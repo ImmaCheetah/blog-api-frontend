@@ -1,16 +1,16 @@
 import styles from "./Comment.module.css";
 /* eslint-disable react/prop-types */
-export default function Comment({author, content, timestamp}) {
+export default function Comment({ author, content, timestamp }) {
   function formatDate(timestamp) {
-    const date = new Date(timestamp)
-    return date.toLocaleDateString('en-US', {
-    weekday: 'short',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-    })
+    const date = new Date(timestamp);
+    return date.toLocaleDateString("en-US", {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   }
 
   return (
@@ -21,5 +21,5 @@ export default function Comment({author, content, timestamp}) {
       </div>
       <p>{content}</p>
     </div>
-  )
+  );
 }

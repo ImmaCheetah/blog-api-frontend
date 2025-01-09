@@ -7,8 +7,6 @@ import SingleBlogPage from "./pages/SingleBlogPage/SingleBlogPage";
 import AuthorSignUp from "./pages/AuthorSignUp/AuthorSignUp";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
-
-
 const routes = [
   {
     path: "/",
