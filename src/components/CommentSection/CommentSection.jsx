@@ -1,16 +1,17 @@
-import CommentForm from "../CommentForm/CommentForm";
+import styles from "./CommentSection.module.css";
+
 import PropTypes from "prop-types";
 import Comment from "../Comment/Comment";
 
-export default function CommentSection({comments, handleComment}) {
+export default function CommentSection({comments}) {
   return (
-    <>
-      <CommentForm key={1} handleComment={handleComment}/>
+    <div className={styles.commentsDiv}>
+      
       {
-        comments.map((comment) => {
+        comments.map((comment, commentIndex) => {
           return (
             <Comment
-              key={comment.id}
+              key={comment.id ? comment.id : commentIndex}
               author={comment.author.username}
               content={comment.content}
               timestamp={comment.timestamp}
@@ -18,7 +19,7 @@ export default function CommentSection({comments, handleComment}) {
           )
         })
       }
-    </>
+    </div>
   )
 }
 

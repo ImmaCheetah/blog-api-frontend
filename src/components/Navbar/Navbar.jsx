@@ -14,7 +14,7 @@ export default function Navbar() {
         <button className={styles.navBtn}>Posts</button>
       </NavLink>
       {
-        auth.user ?
+        auth.token ?
         <>
         <NavLink to='/user/author/sign-up'>
           <button className={styles.navBtn}>Become an Author</button>

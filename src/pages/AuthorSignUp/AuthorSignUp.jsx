@@ -48,6 +48,7 @@ export default function AuthorSignUp() {
       {
         auth.user ?
         <>
+          
           <h2>Enter password to become an author</h2>
           <form className={styles.authorSignUpForm} onSubmit={handleSubmit}>
             <label htmlFor="password"></label>

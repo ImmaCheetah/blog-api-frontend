@@ -2,6 +2,7 @@ import styles from "./SingleBlogPage.module.css";
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router";
 import CommentSection from "../../components/CommentSection/CommentSection";
+import CommentForm from "../../components/CommentForm/CommentForm";
 
 export default function SingleBlogPage() {
   let {postId} = useParams();
@@ -62,10 +63,8 @@ export default function SingleBlogPage() {
             <p>{formatDate(post.timestamp)}</p>
           </div>
           <p className={styles.postContent}>{post.content}</p>
-          <CommentSection 
-            comments={comments} 
-            handleComment={handleComment}
-          />
+          <CommentForm handleComment={handleComment}/>
+          <CommentSection comments={comments} />
         </div>
       }
     </>

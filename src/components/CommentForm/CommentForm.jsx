@@ -35,8 +35,6 @@ export default function CommentForm({handleComment}) {
       })
       
       const res = await response.json();
-      console.log('COMMENT SUBMIT RESPONSE', res)
-      console.log(res.comment.author.username, res.comment.content, res.comment.timestamp)
       handleComment(res.comment.author.username, res.comment.content, res.comment.timestamp);
     } catch (error) {
       console.log(error);
@@ -46,7 +44,7 @@ export default function CommentForm({handleComment}) {
   return (
     <>
       {
-        auth.user ?
+        auth.token ?
         <form className={styles.commentForm} onSubmit={handleSubmit}>
           <label htmlFor="content">Leave a comment</label>
           <textarea 

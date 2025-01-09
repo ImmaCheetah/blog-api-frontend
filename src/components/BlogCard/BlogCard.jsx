@@ -7,8 +7,9 @@ export default function BlogCard({title, content, timestamp, author, postId}) {
     <div className={styles.cardDiv}>
       <div className={styles.cardHeader}>
         <h2>{title}</h2>
+        <p>{timestamp}</p>
       </div>
-      <p>{content}</p>
+      <p>{content}. . .</p>
       <Link to={'/posts/'+ postId} className={styles.cardBtn}>View Post</Link>
     </div>
   )
