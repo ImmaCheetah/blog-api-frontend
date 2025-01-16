@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import Error from "../../components/Error/Error";
+import parse from 'html-react-parser';
 
 export default function SingleBlogPage() {
   let { postId } = useParams();
@@ -79,7 +80,7 @@ export default function SingleBlogPage() {
             <p>Written By: {post.author.username}</p>
             <p>{formatDate(post.timestamp)}</p>
           </div>
-          <p className={styles.postContent}>{post.content}</p>
+          <p className={styles.postContent}>{parse(post.content)}</p>
           <CommentForm handleComment={handleComment} />
           <CommentSection comments={comments} />
         </div>

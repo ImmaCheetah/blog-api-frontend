@@ -1,13 +1,16 @@
 import styles from "./SignUpPage.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useForm from "../../Hooks/useForm";
+
 
 export default function SignUpPage() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState([]);
+  const {values, errors, handleChange} = useForm();
 
   let navigate = useNavigate();
 
@@ -56,6 +59,7 @@ export default function SignUpPage() {
       console.log(error);
     }
   }
+  console.log('Form errors', errors);
 
   return (
     <>
@@ -65,36 +69,36 @@ export default function SignUpPage() {
         <input
           type="text"
           name="username"
-          value={username}
+          // value={username}
           placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleChange}
           required
         />
         <label htmlFor="email"></label>
         <input
           type="email"
           name="email"
-          value={email}
+          // value={email}
           placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange}
           required
         />
         <label htmlFor="password"></label>
         <input
           type="password"
           name="password"
-          value={password}
+          // value={password}
           placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
           required
         />
         <label htmlFor="confirmPassword"></label>
         <input
           type="password"
           name="confirmPassword"
-          value={confirmPassword}
+          // value={confirmPassword}
           placeholder="Confirm Password"
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={handleChange}
           required
         />
         <button type="submit">Sign Up</button>

@@ -2,6 +2,7 @@ import styles from "./BlogPage.module.css";
 import { useState, useEffect } from "react";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import Error from "../../components/Error/Error";
+import parse from 'html-react-parser';
 
 export default function SignUpPage() {
   const [posts, setPosts] = useState([]);
@@ -62,7 +63,7 @@ export default function SignUpPage() {
               <BlogCard
                 key={post.id}
                 title={post.title}
-                content={limitText(post.content)}
+                content={parse(limitText(post.content))}
                 timestamp={formatDate(post.timestamp)}
                 author={post.author.username}
                 postId={post.id}
