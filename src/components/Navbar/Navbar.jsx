@@ -22,9 +22,14 @@ export default function Navbar() {
           </button>
         </>
       ) : (
-        <NavLink to="/login">
-          <button className={styles.navBtn}>Login</button>
-        </NavLink>
+        <>
+          <NavLink to="/login">
+            <button className={styles.navBtn}>Login</button>
+          </NavLink>
+          <NavLink to="/sign-up">
+            <button className={styles.navBtn}>Sign Up</button>
+          </NavLink>
+        </>
       )}
     </nav>
   );

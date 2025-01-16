@@ -15,7 +15,7 @@ export default function BlogCard({
         <h2>{title}</h2>
         <p>{timestamp}</p>
       </div>
-      <p>{content}. . .</p>
+      {content}
       <Link to={"/posts/" + postId} className={styles.cardBtn}>
         View Post
       </Link>

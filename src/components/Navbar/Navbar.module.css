@@ -1,7 +1,7 @@
 nav {
   display: flex;
   align-items: center;
-  background-color: rgb(158, 176, 252);
+  background-color: var(--header-background);
   height: 4rem;
   padding: 1rem 4rem;
   margin-bottom: 2rem;
@@ -11,10 +11,12 @@ nav {
 
 .blogNameLink {
   margin-right: auto;
+
 }
 
 .blogName {
   font-size: 2rem;
+  color: white;
   appearance: none;
   border: none;
   background-color: transparent;
@@ -26,6 +28,7 @@ nav {
   border: none;
   background: transparent;
   font-size: 1.4rem;
+  color: white;
 }
 
 .navBtn:hover,

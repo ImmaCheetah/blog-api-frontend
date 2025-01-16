@@ -19,7 +19,7 @@ export default function SignUpPage() {
   }
 
   function limitText(content) {
-    return content.slice(0, 300);
+    return content.slice(0, 200) + ' . . .';
   }
 
   useEffect(() => {
@@ -56,6 +56,7 @@ export default function SignUpPage() {
 
   return (
     <>
+      <h2 className={styles.blogHeaderWarning}>*These blogs are written by AI and are examples to showcase the website</h2>
       {posts && (
         <div className={styles.postsDiv}>
           {posts.map((post) => {
