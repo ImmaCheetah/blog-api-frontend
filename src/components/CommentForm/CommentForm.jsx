@@ -58,6 +58,7 @@ export default function CommentForm({ handleComment }) {
             name="content"
             value={comment}
             placeholder="What a great blog"
+            maxLength={300}
             onChange={(e) => setComment(e.target.value)}
             required
           />
