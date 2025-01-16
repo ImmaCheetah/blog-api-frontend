@@ -15,7 +15,7 @@ export default function useForm() {
 
     switch(name) {
       case 'username':
-        if(value.length <= 4) {
+        if(value.length < 4) {
           setErrors({
             ...errors,
             username: 'Username must be at least 4 letters'

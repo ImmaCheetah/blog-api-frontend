@@ -5,10 +5,6 @@ import useForm from "../../Hooks/useForm";
 
 
 export default function SignUpPage() {
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState([]);
   const {values, errors, handleChange} = useForm();
 
@@ -69,38 +65,46 @@ export default function SignUpPage() {
         <input
           type="text"
           name="username"
-          // value={username}
           placeholder="Username"
           onChange={handleChange}
           required
         />
+        {
+          errors.username && <p>{errors.username}</p>
+        }
         <label htmlFor="email"></label>
         <input
           type="email"
           name="email"
-          // value={email}
           placeholder="Email"
           onChange={handleChange}
           required
         />
+        {
+          errors.email && <p>{errors.email}</p>
+        }
         <label htmlFor="password"></label>
         <input
           type="password"
           name="password"
-          // value={password}
           placeholder="Password"
           onChange={handleChange}
           required
         />
+        {
+          errors.password && <p>{errors.password}</p>
+        }
         <label htmlFor="confirmPassword"></label>
         <input
           type="password"
           name="confirmPassword"
-          // value={confirmPassword}
           placeholder="Confirm Password"
           onChange={handleChange}
           required
         />
+        {
+          errors.confirmPassword && <p>{errors.confirmPassword}</p>
+        }
         <button type="submit">Sign Up</button>
       </form>
       {error &&

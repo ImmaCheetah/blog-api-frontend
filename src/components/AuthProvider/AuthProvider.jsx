@@ -8,6 +8,7 @@ const AuthContext = createContext();
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("JWT") || null);
+  const [error, setError] = useState(null);
 
   let navigate = useNavigate();
 
@@ -23,8 +24,16 @@ export default function AuthProvider({ children }) {
           "Content-Type": "application/json",
         },
       });
-
       const res = await response.json();
+      console.log(response);
+      console.log(res);
+
+      if (response.status >= 401) {
+        setError({
+          errorMsg: "Incorrect username or password"
+        })
+      }
+
       if (res.user) {
         setUser(res.user);
         setToken(res.token);
@@ -34,7 +43,6 @@ export default function AuthProvider({ children }) {
         navigate("/");
         return;
       }
-      throw new Error(res.message);
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +56,7 @@ export default function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, loginFetch, logOut }}>
+    <AuthContext.Provider value={{ token, user, error, loginFetch, logOut }}>
       {children}
     </AuthContext.Provider>
   );

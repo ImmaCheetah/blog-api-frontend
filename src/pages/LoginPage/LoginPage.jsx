@@ -17,6 +17,7 @@ export default function LoginPage() {
 
     auth.loginFetch(username, password);
   }
+  console.log(auth.error)
 
   return (
     <>
@@ -41,6 +42,7 @@ export default function LoginPage() {
           required
         />
         <button type="submit">Log In</button>
+        <p>{auth.error && auth.error.errorMsg}</p>
         <p>
           Don&apos;t have an account? <NavLink to="/sign-up">Sign Up</NavLink>
         </p>
