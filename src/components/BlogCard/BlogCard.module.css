@@ -36,3 +36,12 @@
   align-self: flex-end;
   margin-top: auto;
 }
+
+@media (max-width: 450px) {
+  .cardDiv {
+    width: auto;
+    min-width: 200px;
+    height: auto;
+    margin: 0 1rem;
+  }
+}

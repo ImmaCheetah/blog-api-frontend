@@ -8,3 +8,9 @@
   font-size: 1rem;
   margin-bottom: 1rem;
 }
+
+@media (max-width: 850px) {
+  .postsDiv {
+    grid-template-columns: 1fr;
+  }
+}

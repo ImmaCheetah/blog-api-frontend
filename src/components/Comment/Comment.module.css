@@ -24,3 +24,12 @@
 .commentAuthor {
   font-weight: bold;
 }
+
+@media (max-width: 450px) {
+  .commentDiv {
+    width: 80vw;
+    min-width: 200px;
+    height: auto;
+    margin: auto;
+  }
+}
