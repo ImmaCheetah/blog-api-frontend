@@ -1,3 +1,4 @@
+import styles from "./HomePage.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
@@ -10,7 +11,12 @@ export default function HomePage() {
   return (
     <>
       <h2>Welcome to my blog</h2>
-      <button onClick={handleBlogBtn}>View Blog</button>
+      <p>This website was made using</p>
+      <ul>
+        <li>React</li>
+        <li>Express</li>
+      </ul>
+      <button className={styles.viewBlogBtn} onClick={handleBlogBtn}>View Blog</button>
     </>
   );
 }

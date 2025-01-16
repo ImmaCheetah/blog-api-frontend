@@ -2,7 +2,7 @@ import styles from "./SignUpPage.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
-
+import { toast } from "react-toastify";
 
 export default function SignUpPage() {
   const [error, setError] = useState([]);
@@ -49,6 +49,9 @@ export default function SignUpPage() {
       }
 
       if (response.status === 200) {
+        toast.success("Account created!", {
+          position: "bottom-right",
+        });
         redirectUser();
       }
     } catch (error) {

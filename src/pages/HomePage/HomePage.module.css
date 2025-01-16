@@ -1,0 +1,8 @@
+.viewBlogBtn {
+  background-color: var(--header-background);
+  color: white;
+  padding: 0.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.4rem;
+}
