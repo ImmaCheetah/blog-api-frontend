@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import Error from "../../components/Error/Error";
 import parse from 'html-react-parser';
+require('dotenv').config()
 
 export default function SignUpPage() {
   const [posts, setPosts] = useState([]);
@@ -25,7 +26,7 @@ export default function SignUpPage() {
   useEffect(() => {
     const data = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/posts`, {
+        const response = await fetch(`${process.env.API_URL}/posts`, {
           method: "GET",
         });
 

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { toast } from "react-toastify";
+require('dotenv').config()
+
 
 export default function SignUpPage() {
   const [error, setError] = useState([]);
@@ -30,7 +32,7 @@ export default function SignUpPage() {
 
   async function signUpFetch(username, email, password, confirmPassword) {
     try {
-      const response = await fetch("http://localhost:8080/user/sign-up", {
+      const response = await fetch(`${process.env.API_URL}/user/sign-up`, {
         method: "POST",
         body: JSON.stringify({
           username: username,
