@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import Error from "../../components/Error/Error";
 import parse from 'html-react-parser';
-import 'dotenv/config'
+
 
 export default function SignUpPage() {
   const [posts, setPosts] = useState([]);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./AuthorSignUp.module.css";
 import { useAuth } from "../../components/AuthProvider/AuthProvider";
-import 'dotenv/config'
+
 
 export default function AuthorSignUp() {
   const auth = useAuth();

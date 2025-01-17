@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { toast } from "react-toastify";
-import 'dotenv/config'
+
 
 
 export default function SignUpPage() {
