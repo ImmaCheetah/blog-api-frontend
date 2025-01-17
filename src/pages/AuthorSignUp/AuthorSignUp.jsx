@@ -39,7 +39,7 @@ export default function AuthorSignUp() {
 
       if (response.status === 200) {
         const res = await response.json();
-        window.open("https://www.google.com/", "_blank");
+        window.open(import.meta.env.STUDIO_SITE_ORIGIN, "_blank");
         console.log(res);
       }
     } catch (error) {
