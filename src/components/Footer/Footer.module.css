@@ -1,4 +1,4 @@
-footer {
+.footerDiv {
   margin-top: auto;
   height: 3rem;
   background-color: rgb(40, 39, 39);
@@ -9,7 +9,7 @@ footer {
 }
 
 @media (max-width: 650px) {
-  footer {
+  .footerDiv {
     width: 100%;
   }
 }
