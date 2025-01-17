@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import AuthProvider from "./components/AuthProvider/AuthProvider";
 import { ToastContainer } from "react-toastify";
 
+
 const App = () => {
   return (
     <AuthProvider>

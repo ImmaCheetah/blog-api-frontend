@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import { useParams } from "react-router";
 import { NavLink, useNavigate } from "react-router-dom";
-require('dotenv').config()
+
 
 export default function CommentForm({ handleComment }) {
   const auth = useAuth();
@@ -25,7 +25,7 @@ export default function CommentForm({ handleComment }) {
     try {
       console.log("AUTH USER FROM COMMENT FETCH", auth.user);
       const response = await fetch(
-        `${process.env.API_URL}/posts/${postId}/comments`,
+        `${import.meta.env.VITE_API_URL}/posts/${postId}/comments`,
         {
           method: "POST",
           body: JSON.stringify({

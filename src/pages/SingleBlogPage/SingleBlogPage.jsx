@@ -5,7 +5,7 @@ import CommentSection from "../../components/CommentSection/CommentSection";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import Error from "../../components/Error/Error";
 import parse from 'html-react-parser';
-require('dotenv').config()
+
 
 export default function SingleBlogPage() {
   let { postId } = useParams();
@@ -42,7 +42,7 @@ export default function SingleBlogPage() {
   useEffect(() => {
     const data = async () => {
       try {
-        const response = await fetch(`${process.env.API_URL}/posts/${postId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
           method: "GET",
         });
 

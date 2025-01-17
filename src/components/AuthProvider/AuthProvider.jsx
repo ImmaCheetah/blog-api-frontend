@@ -1,7 +1,7 @@
 // Code from https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
 import { useContext, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-require('dotenv').config()
+
 
 const AuthContext = createContext();
 
@@ -14,7 +14,7 @@ export default function AuthProvider({ children }) {
 
   async function loginFetch(username, password) {
     try {
-      const response = await fetch(process.env.API_URL, {
+      const response = await fetch(import.meta.env.VITE_API_URL, {
         method: "POST",
         body: JSON.stringify({
           username: username,

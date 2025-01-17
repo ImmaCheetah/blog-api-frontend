@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./AuthorSignUp.module.css";
 import { useAuth } from "../../components/AuthProvider/AuthProvider";
-require('dotenv').config()
+
 
 export default function AuthorSignUp() {
   const auth = useAuth();
@@ -19,7 +19,7 @@ export default function AuthorSignUp() {
   async function authorFetch(password) {
     try {
       const response = await fetch(
-        `${process.env.API_URL}/user/author/sign-up`,
+        `${import.meta.env.VITE_API_URL}/user/author/sign-up`,
         {
           method: "POST",
           body: JSON.stringify({
