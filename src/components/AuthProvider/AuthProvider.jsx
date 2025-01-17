@@ -1,7 +1,6 @@
 // Code from https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
 import { useContext, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import 'dotenv/config'
 
 const AuthContext = createContext();
 
