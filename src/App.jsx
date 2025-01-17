@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import AuthProvider from "./components/AuthProvider/AuthProvider";
 import { ToastContainer } from "react-toastify";
-
+import 'dotenv/config'
 
 const App = () => {
   return (

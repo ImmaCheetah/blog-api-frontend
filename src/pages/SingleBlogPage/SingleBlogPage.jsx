@@ -5,7 +5,7 @@ import CommentSection from "../../components/CommentSection/CommentSection";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import Error from "../../components/Error/Error";
 import parse from 'html-react-parser';
-
+import 'dotenv/config'
 
 export default function SingleBlogPage() {
   let { postId } = useParams();

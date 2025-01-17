@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import { useParams } from "react-router";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import 'dotenv/config'
 
 export default function CommentForm({ handleComment }) {
   const auth = useAuth();
