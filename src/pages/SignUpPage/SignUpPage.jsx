@@ -1,5 +1,5 @@
 import styles from "./SignUpPage.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { toast } from "react-toastify";
@@ -58,7 +58,6 @@ export default function SignUpPage() {
       console.log(error);
     }
   }
-  console.log('Form errors', errors);
 
   return (
     <>
