@@ -2,7 +2,7 @@
 
 This is the frontend of my full stack blog app that uses React and Vite which is hosted on Netlify.
 
-You can check it out here [Blog and Such Studio](https://blogandsuch.netlify.app/)
+You can check it out here [Blog and Such](https://blogandsuch.netlify.app/)
 
 An admin website is also available to handle CRUD operations at [Blog and Such Studio](https://blogandsuchstudio.netlify.app/)
 
