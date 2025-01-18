@@ -52,7 +52,7 @@ export default function useForm() {
 
         case 'password': 
 
-        if (value.length <= 6) {
+        if (value.length <= 5) {
           setErrors({
             ...errors,
             password: 'Password must be at least 6 characters'
