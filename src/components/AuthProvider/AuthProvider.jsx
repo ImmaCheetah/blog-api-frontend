@@ -24,8 +24,6 @@ export default function AuthProvider({ children }) {
         },
       });
       const res = await response.json();
-      console.log(response);
-      console.log(res);
 
       if (response.status >= 401) {
         setError({

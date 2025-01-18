@@ -5,7 +5,7 @@ import Error from "../../components/Error/Error";
 import parse from 'html-react-parser';
 
 
-export default function SignUpPage() {
+export default function BlogPage() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);

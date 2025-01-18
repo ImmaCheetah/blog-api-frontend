@@ -9,14 +9,10 @@ export default function HomePage() {
   }
 
   return (
-    <>
-      <h2>Welcome to my blog</h2>
-      <p>This website was made using</p>
-      <ul>
-        <li>React</li>
-        <li>Express</li>
-      </ul>
+    <div className={styles.welcomeDiv}>
+      <h2 className={styles.welcomeHeader}>Welcome to Blog and Such</h2>
+      <p>This is my full stack blog app that was made with a RESTful API, Express and React</p>
       <button className={styles.viewBlogBtn} onClick={handleBlogBtn}>View Blog</button>
-    </>
+    </div>
   );
 }
