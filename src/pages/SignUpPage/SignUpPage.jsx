@@ -24,9 +24,6 @@ export default function SignUpPage() {
     const password = form.get("password");
     const confirmPassword = form.get("confirmPassword");
 
-    const formJson = Object.fromEntries(form.entries());
-    console.log(formJson);
-
     signUpFetch(username, email, password, confirmPassword);
   }
 

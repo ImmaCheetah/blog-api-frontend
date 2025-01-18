@@ -23,7 +23,6 @@ export default function CommentForm({ handleComment }) {
 
   async function commentFetch(postId, content) {
     try {
-      console.log("AUTH USER FROM COMMENT FETCH", auth.user);
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/posts/${postId}/comments`,
         {

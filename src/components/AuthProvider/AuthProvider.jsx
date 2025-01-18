@@ -34,8 +34,6 @@ export default function AuthProvider({ children }) {
       if (res.user) {
         setUser(res.user);
         setToken(res.token);
-        console.log("USER FROM LOGIN", res.user);
-        console.log("USER FROM LOGIN", res.token);
         localStorage.setItem("JWT", res.token);
         navigate("/");
         return;

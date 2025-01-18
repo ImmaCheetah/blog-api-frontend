@@ -17,7 +17,6 @@ export default function LoginPage() {
 
     auth.loginFetch(username, password);
   }
-  console.log(auth.error)
 
   return (
     <>
